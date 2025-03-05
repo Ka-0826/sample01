@@ -20,7 +20,7 @@
   │── form_template.php  
   │── login.php  
   │── register_complete.php    
-  │── register_confirm.php
+  │── register_confirm.php  
   │── register_form.php  
   │── register.php   
   
