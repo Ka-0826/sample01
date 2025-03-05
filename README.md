@@ -11,7 +11,7 @@
 ## ディレクトリ構成  
 
 /project-root  
-  │── common.css
+  │── common.css  
   │── common.php    
   │── confirm_template.php  
   │── dbconnect.php  
