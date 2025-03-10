@@ -1,100 +1,130 @@
 <?php
-   //DBへの接続準備
-    $pdo = 'mysql:dbname=sample;host=localhost;charset=utf8';
-    $user = 'root';
-    $password = 'root';
-    $options = array(
-        // SQL実行失敗時にはエラーコードのみ設定
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT,
-        // デフォルトフェッチモードを連想配列形式に設定
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        // バッファードクエリを使う(一度に結果セットをすべて取得し、サーバー負荷を軽減)
-        // SELECTで得た結果に対してもrowCountメソッドを使えるようにする
-        PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
-    );
+// 共通設定を読み込み
+include 'common.php';
 
-    try {
-        // PDOオブジェクト生成（DBへ接続）
-        $pdo = new PDO($pdo, $user, $password, $options);
+// データベース接続
+$pdo = getDbConnection();
 
-        $stmt = $pdo->prepare('SELECT * FROM mst_employee');
-        $stmt->execute();
-        // SQL文の実行結果を配列で取得する
-        $mst_employee = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        $error_message[] = $e->getMessage();
-        exit;
-    }
-    //DB切断
-    $pdo = null;
+try {
+    // PDOオブジェクト生成（DBへ接続）
+    $stmt = $pdo->prepare('SELECT * FROM mst_employee');
+    $stmt->execute();
 
-    ?>
+    // SQL文の実行結果を配列で取得する
+    $mst_employee = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    $error_message[] = $e->getMessage();
+    exit;
+}
+
+//DB切断
+$pdo = null;
+?>
 
 <!DOCTYPE html>
 <html lang= "ja">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="register.css">
+        <!-- 共通CSS -->
+        <link rel="stylesheet" href="common.css">
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-
-        <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
 
         <title>メイン画面</title>
     </head>
+
     <body>
         <div class="contact-bg">
             <div class="contact-area inner">
                 <p class="contact-message">メイン画面</p>
 
-                <div class="table-inner" id="js-search-list">
-                        <input type="search" class="search" placeholder="検索　（姓名/性別/郵便番号/住所）">
-                        <table class="table-bordered">
-                                <thead>
-                                    <tr class="tr-bordered">
-                                        <th scope="col" class="col">ID</th>
-                                        <th scope="col" class="sort col" data-sort="name">姓名</th>
-                                        <th scope="col" class="col">性別</th>
-                                        <th scope="col" class="col">誕生日</th>
-                                        <th scope="col" class="sort col" data-sort="startdate">入社日</th>
-                                        <th scope="col" class="sort col" data-sort="postcord">郵便番号</th>
-                                        <th scope="col" class="col">住所</th>
-                                        <th scope="col" class="col">登録日</th>
-                                        <th scope="col" class="col"></th>
+                <!-- 検索フォームと登録ボタン -->
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-end mb-3">
+                    <div class="search-forms d-flex flex-column flex-md-row">
+                        <div class="me-3">
+                            <p>姓名</p>
+                            <input type="search" class="search name-search form-control" placeholder="検索（姓名）">
+                        </div>
+                        <div class="me-3">
+                            <p>性別</p>
+                            <input type="search" class="search sex-search form-control" placeholder="検索（性別）">
+                        </div>
+                        <div class="me-3">
+                            <p>住所</p>
+                            <input type="search" class="search address-search form-control" placeholder="検索（住所）">
+                        </div>
+                    </div>
+                    <input type="submit" value="登録" class="btn btn-primary" name="button" onclick="location.href='./register_form.php'">
+                </div>
 
-                                    </tr>
-                                </thead>
-                                <tbody class="list">
-                                    <?php foreach ($mst_employee as $employee): ?>
-                                    <tr class="tr-bordered">
-                                        <td scope="row" class="id row"><?php print $employee["ID"] ?></td>
-                                        <td scope="row" class="name row"><?php echo $employee["sei"]. $employee["mei"] ?></td>
-                                        <td scope="row" class="sex row"><?php echo $employee["sex"] ?></td>
-                                        <td scope="row" class="birthday row"><?php echo $employee["birthday"] ?><tdh>
-                                        <td scope="row" class="startdate row"><?php echo $employee["startdate"] ?></td>
-                                        <td scope="row" class="postcord row"><?php echo $employee["postcord"] ?></td>
-                                        <td scope="row" class="address row"><?php echo $employee["address1"]. $employee["address2"]. $employee["address3"] ?></td>
-                                        <td scope="row" class="regdate row"><?php echo $employee["regdate"] ?></td>
-                                        <td scope="row" class="row"><a href="edit.php?id=<?php echo $employee['ID']; ?>">編集</a></td>
-                                    </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-
-                        </table>
-                        <input type="submit" value="登録" class="button" name="button" onclick="location.href='./register_form.php'">
+                <!-- 登録一覧テーブル -->
+                <div class=" table-inner" id="js-search-list">
+                    <table class="table table-striped table-hover table-bordered">
+                        <div class="d-flex flex-column flex-md-row">
+                            <thead>
+                                <tr class="tr-bordered">
+                                    <th scope="col" class="col blank-col"></th>
+                                    <th scope="col" class="sort col id-col" data-sort="id">ID</th>
+                                    <th scope="col" class="sort col" data-sort="name">姓名</th>
+                                    <th scope="col" class="sort col" data-sort="sex">性別</th>
+                                    <th scope="col" class="sort col" data-sort="birthday">誕生日</th>
+                                    <th scope="col" class="sort col" data-sort="startdate">入社日</th>
+                                    <th scope="col" class="sort col" data-sort="postcord">郵便番号</th>
+                                    <th scope="col" class="col address-col">住所</th>
+                                    <th scope="col" class="sort col" data-sort="regdate">登録日</th>
+                                </tr>
+                            </thead>
+                            <tbody class="list">
+                                <?php foreach ($mst_employee as $employee): ?>
+                                <tr class="tr-bordered">
+                                    <td class="edit-delete">
+                                        <div class="edit-container">
+                                        <a href="edit_form.php?id=<?php echo $employee['ID']; ?>">編集</a>
+                                            </div>
+                                        <div class="delete-container">
+                                            <a href="delete_confirm.php?id=<?php echo $employee['ID']; ?>">削除</a>
+                                        </div>
+                                    </td>
+                                    <td class="id"><?php echo $employee["ID"]; ?></td>
+                                    <td class="name"><?php echo $employee["sei"] . " " . $employee["mei"]; ?></td>
+                                    <td class="sex"><?php echo $employee["sex"]; ?></td>
+                                    <td class="birthday"><?php echo $employee["birthday"]; ?></td>
+                                    <td class="startdate"><?php echo $employee["startdate"]; ?></td>
+                                    <td class="postcord"><?php echo $employee["postcord"]; ?></td>
+                                    <td class="address"><?php echo $employee["address1"] . " " . $employee["address2"] . " " . $employee["address3"]; ?></td>
+                                    <td class="regdate"><?php echo $employee["regdate"]; ?></td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </div>
+                    </table>
                 </div>
             </div>
         </div>
 
+        <!-- <list.js ライブラリを読み込み -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
         <script>
-            // DOMが読み込まれたらリストを初期化
-            document.addEventListener('DOMContentLoaded', function () {
-                const options = {
-                    valueNames: [ 'name', 'sex', 'startdate', 'postcord', 'address' ]
-                };
-                const tableInner = new List('js-search-list', options);
+            // ソート機能
+            const options = {
+                valueNames: [ 'id', 'name', 'sex', 'birthday', 'startdate', 'postcord', 'address', 'regdate' ]
+            };
+
+            // 氏名・性別・住所の検索機能
+            const jsSearchList = new List('js-search-list', options);
+
+            document.querySelector('.name-search').addEventListener('input', function() {
+                jsSearchList.search(this.value, ['name']);
+            });
+
+            document.querySelector('.sex-search').addEventListener('input', function() {
+                jsSearchList.search(this.value, ['sex']);
+            });
+
+            document.querySelector('.address-search').addEventListener('input', function() {
+                jsSearchList.search(this.value, ['address']);
             });
         </script>
-       
     </body>
 </html>   

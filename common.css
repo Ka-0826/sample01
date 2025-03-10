@@ -1,0 +1,242 @@
+/*　共通　*/
+
+.contact-bg {
+    background: #e4eeef;
+    padding: 50px 0;
+}
+ 
+.contact-message { 
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 25px;
+    line-height: 2;
+    margin-bottom: 50px;
+}
+
+.message-notice {
+    text-align: center;
+    color: #c10811;
+    font-size: 20px;
+}
+ 
+.essential {
+    background: #c10811;
+    color: #fafafa;
+    font-size: 12px;
+    padding: 0 10px;
+    font-weight: normal;
+    margin-left: 10px;
+}
+ 
+.contact-area {
+    background: #fafafa;
+    width: 90%;  /* 画面幅に対して広めに設定 */
+    max-width: 1200px; /* 最大幅を調整 */
+    padding: 30px 20px; /* 上下左右の余白を減らす */
+    margin: 20px auto; /* 少しだけ余白を残す */
+}
+ 
+input::placeholder {
+    color: #bfbfbf;
+    font-size: 12px;
+    font-weight: bold;
+}
+ 
+textarea {
+    border: none;
+    width: 400px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid #c4c4c4;
+    resize: none;
+}
+ 
+textarea::placeholder {
+    color: #bfbfbf;
+    font-size: 12px;
+}
+ 
+.contact-area .text {
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 100px;
+}
+ 
+@media(max-width:1200px) {
+    .contact-area {
+        width: 80%;
+        padding: 60px;
+    }
+}
+ 
+@media(max-width:1024px) {
+    .contact-area {
+        padding: 50px 15px;
+    }
+ 
+    textarea {
+        width: 400px;
+        height: 40px;
+    }*/
+ 
+    .contact-message {
+        margin-bottom: 30px;
+    }
+ 
+    .contact-area .text {
+        margin-bottom: 30px;
+    }
+}
+ 
+ 
+@media(max-width:834px) {
+    .contact-bg {
+        padding: 50px 0;
+    }
+ 
+    .contact-area {
+        margin: 50px auto;
+        padding: 50px 20px;
+    }
+ 
+    textarea {
+        width: 100%;
+        height: 30px;
+    }
+ 
+    .contact-message {
+        font-size: 20px;
+    }
+ 
+    .contact-area .text {
+        font-size: 13px;
+    }
+}
+ 
+@media (max-width:640px) {
+    .contact-area .text {
+        text-align: left;
+    }
+}
+ 
+@media(max-width:320px) {
+    .input-area {
+        width: 100%;
+    }
+ 
+    textarea {
+        width: 100%;
+    }
+}
+
+/*login.php*/
+
+.search {
+    font-family: 'Noto Sans JP', sans-serif;
+    letter-spacing: 0.05em;
+    padding: 0 10px;
+    margin-bottom: 20px;
+    width: 21.5%;
+    height: 30px;
+    box-sizing: border-box;
+    border: 1px solid #c4c4c4;
+}
+
+.table-inner {
+    overflow-y: auto;
+    width: 100%;
+    max-width: 100%;
+    height: 700px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table-bordered {
+    border-spacing: 0;
+    width: 100%;
+    table-layout: fixed;
+    margin: 0 auto;
+}
+
+.table-bordered th, 
+.table-bordered td {
+    padding: 4px 8px;
+    text-align: left;
+}
+
+/* 編集削除列の幅を狭める */
+.table-bordered th.blank-col {
+    width: 4% !important;
+    min-width: 4% !important;
+} 
+
+/* ID列の幅を狭める */
+.table-bordered th.id-col {
+    width: 8% !important;
+    min-width: 8% !important;
+} 
+
+/* 住所列の幅を狭める */
+.table-bordered th.address-col {
+    width: 30% !important;
+    min-width: 30% !important;
+} 
+
+.edit-delete {
+    flex-direction: column;
+
+}
+
+.edit-container a  {
+    display: inline-block;
+    line-height: 1.6em;
+    color: #0079CC;
+	font-size: 86%;
+}
+
+/* 編集ボタン */
+.delete-container a {
+    display: inline-block;
+    line-height: 1.6em;
+    color: #c10811;;
+	font-size: 86%;
+}
+ 
+/* ヘッダー行 */
+.col {
+    position: sticky; /* ヘッダー行を固定 */
+    top: 0; /* 上部に固定 */
+    left: 0; /* 左側に固定 */
+    cursor: pointer; /* カーソル変更 */
+}
+
+.sort.col.desc::after {
+    content: "▼";
+    margin-left: 10px;
+    font-size: 16px;
+}
+      
+.sort.col.asc::after {
+    content: "▲";
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+.td-row::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    background: #ccc;
+    z-index: -1;
+  }
+
+  td {
+    word-wrap: break-word;  /* 単語がセルを越えないように改行 */
+    word-break: break-word; /* 長い単語も改行させる */
+}
+
