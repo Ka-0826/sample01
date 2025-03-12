@@ -18,17 +18,17 @@
 
 | メイン画面 | 登録画面 |
 | ---- | ---- |
-| ![Image](https://github.com/user-attachments/assets/de12de35-ba73-4b90-a959-02f396d3a325) | ![Image](https://github.com/user-attachments/assets/1f4d2f64-2951-4eb6-a9dc-409c56eb32eb) |
+| ![Image](https://github.com/user-attachments/assets/de12de35-ba73-4b90-a959-02f396d3a325) | ![Image](https://github.com/user-attachments/assets/729c9e0a-118b-4842-9d30-3f6cf5ea0338) |
 
 | 登録確認画面 |  登録完了画面 |
 | ---- | ---- |
-| ![Image](https://github.com/user-attachments/assets/793cba8f-3608-44ea-be5d-a65b562e2ede) |　![Image](https://github.com/user-attachments/assets/182f2a43-f6b2-4e2b-8d3c-a8b958696f40) |
+| ![Image](https://github.com/user-attachments/assets/8b346da1-d7f0-41de-bc77-8a0126cd0a41) |　![Image](https://github.com/user-attachments/assets/182f2a43-f6b2-4e2b-8d3c-a8b958696f40) |
 
 | 編集画面 |  編集確認画面 |
 | ---- | ---- |
-| ![Image](https://github.com/user-attachments/assets/c98556e0-8635-463c-b44d-dc80152da9fe) |　![Image](https://github.com/user-attachments/assets/90bc3c5c-292b-4a17-9946-d210ffc0a870) |
+| ![Image](https://github.com/user-attachments/assets/83df88c2-c7bc-4bbf-bdf4-f274e2871e88) |　![Image](https://github.com/user-attachments/assets/ade5b0c6-0c58-45ef-a59d-50bb951de57f) |
 
 | 削除確認画面 |  削除完了画面 |
 | ---- | ---- |
-| ![Image](https://github.com/user-attachments/assets/d976de5c-fb64-4f95-bf9f-706554b95cd8) |　![Image](https://github.com/user-attachments/assets/441bd1e4-eaa5-4f66-8646-25892af92e26) |
+| ![Image](https://github.com/user-attachments/assets/44029b40-cd70-492f-9044-2e5b308a3206) |　![Image](https://github.com/user-attachments/assets/441bd1e4-eaa5-4f66-8646-25892af92e26) |
 
