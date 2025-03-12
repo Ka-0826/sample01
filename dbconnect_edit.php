@@ -11,7 +11,7 @@ $today = date('Y-m-d');
 $pdo = getDbConnection();
  
 // POSTでフォームが送信された場合の処理
-if (!empty($_POST)) {
+if (!empty($_POST) && isset($_POST['update-complete-button'])) {
     $birthday = $_POST['birthday'];
     $startdate = $_POST['startdate'];
 

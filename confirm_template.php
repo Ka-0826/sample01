@@ -65,15 +65,18 @@ require_once 'common.php';
                     endforeach; ?>
 
                     <div class="d-flex justify-content-center gap-2 w-100">
-                        <?php if (!isset($isDelete) || !$isDelete): ?>
-                            <!-- 新規作成・編集時の確認ボタン -->
-                            <input type="submit" value="確定" class="submit-button btn btn-primary flex-fill">
-                            <input type="button" value="修正" class="cancel-button btn btn-secondary flex-fill" onclick="history.back()">
-                        <?php else: ?>
-
-                        <!-- 編集時の編集確認ボタン -->
+                        <?php if (isset($isDelete) && $isDelete): ?>
+                            <!-- 削除確認ボタン -->
                             <input type="submit" value="削除" class="delete-button btn btn-danger flex-fill" name="delete-button">
                             <input type="button" value="戻る" class="cancel-button btn btn-secondary flex-fill" name="cancel-button" onclick="history.back()">
+                        <?php elseif (isset($isEdit) && $isEdit): ?>
+                            <!-- 編集確定ボタン -->
+                            <input type="submit" value="確定" class="submit-button btn btn-primary flex-fill" name="update-complete-button">
+                            <input type="button" value="修正" class="cancel-button btn btn-secondary flex-fill" onclick="history.back()">
+                        <?php else: ?>
+                            <!-- 新規確認ボタン -->
+                            <input type="submit" value="確定" class="submit-button btn btn-primary flex-fill">
+                            <input type="button" value="修正" class="cancel-button btn btn-secondary flex-fill" onclick="history.back()">
                         <?php endif; ?>
                     </div>
                 </form>
