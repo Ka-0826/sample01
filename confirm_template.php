@@ -20,9 +20,9 @@ require_once 'common.php';
 
             <div class="contact-inner container">
                 <form class="w-50 mx-auto p-3" action="<?php echo h($formAction); ?>" method="POST">
-                    <!-- IDをhiddenで送信 -->
-                    <?php if (!empty($message_data['ID'])): ?>
-                        <input type="hidden" name="id" value="<?php echo h($message_data['ID']); ?>">
+                    <!-- idをhiddenで送信 -->
+                    <?php if (!empty($formData['id'])): ?>
+                        <input type="hidden" name="id" value="<?php echo h($formData['id']); ?>">
                     <?php endif; ?>
                     <?php 
                     // 項目リスト（表示順を保持）

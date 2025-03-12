@@ -1,6 +1,6 @@
 <?php
 $pageTitle = "登録確認画面";
-$message = "下記スタッフを追加しますか？";
+$message = "下記スタッフを登録しますか？";
 
 // 登録用の処理ページ
 $formAction = "dbconnect_register.php"; 

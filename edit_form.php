@@ -7,10 +7,10 @@ $pdo = getDbConnection();
 
 $message_data = [];
 
-// SQL作成(GETでIDが渡された場合）
+// SQL作成(id
 if (!empty($_GET['id'])) {
     try {
-        $stmt = $pdo->prepare('SELECT * FROM mst_employee WHERE ID = :id');
+        $stmt = $pdo->prepare('SELECT * FROM mst_employee WHERE id = :id');
         // 値をセット
         $stmt->bindValue( ':id', $_GET['id'], PDO::PARAM_INT);
         // SQLクエリの実行

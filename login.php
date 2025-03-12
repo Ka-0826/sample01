@@ -80,13 +80,13 @@ $pdo = null;
                                 <tr class="tr-bordered">
                                     <td class="edit-delete">
                                         <div class="edit-container">
-                                        <a href="edit_form.php?id=<?php echo $employee['ID']; ?>">編集</a>
+                                        <a href="edit_form.php?id=<?php echo $employee['id']; ?>">編集</a>
                                             </div>
                                         <div class="delete-container">
-                                            <a href="delete_confirm.php?id=<?php echo $employee['ID']; ?>">削除</a>
+                                            <a href="delete_confirm.php?id=<?php echo $employee['id']; ?>">削除</a>
                                         </div>
                                     </td>
-                                    <td class="id"><?php echo $employee["ID"]; ?></td>
+                                    <td class="id"><?php echo $employee["id"]; ?></td>
                                     <td class="name"><?php echo $employee["sei"] . " " . $employee["mei"]; ?></td>
                                     <td class="sex"><?php echo $employee["sex"]; ?></td>
                                     <td class="birthday"><?php echo $employee["birthday"]; ?></td>
