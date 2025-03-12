@@ -9,8 +9,12 @@ $formAction = "dbconnect_edit.php";
 $formData = $_POST;
 $isEdit = true;
 
-if (!isset($formData['id']) && isset($_POST['id'])) {
-    $formData['id'] = $_POST['id'];
+if (!isset($formData['id'])) {
+    if (isset($_POST['id'])) {
+        $formData['id'] = $_POST['id'];
+    } elseif (isset($_GET['id'])) {
+        $formData['id'] = $_GET['id'];
+    }
 }
 
 include 'confirm_template.php';

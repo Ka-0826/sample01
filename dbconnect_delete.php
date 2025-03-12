@@ -12,9 +12,9 @@ $pdo = getDbConnection();
     
 try{
     // SQL文作成（データ削除）
-    $stmt = $pdo->prepare('DELETE FROM mst_employee WHERE ID = :id');
+    $stmt = $pdo->prepare('DELETE FROM mst_employee WHERE id = :id');
 
-    // 削除するデータの ID をセット
+    // 削除するデータのidをセット
     $stmt->bindValue(':id', $_POST['id'] ?? 0, PDO::PARAM_INT);
 
     // SQLの実行

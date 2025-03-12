@@ -9,9 +9,9 @@ $today = date('Y-m-d');
 
 // データベース接続
 $pdo = getDbConnection();
-    
+ 
 // POSTでフォームが送信された場合の処理
-if (!empty($_POST) && isset($_POST['update-button'])) {
+if (!empty($_POST)) {
     $birthday = $_POST['birthday'];
     $startdate = $_POST['startdate'];
 
@@ -26,7 +26,7 @@ if (!empty($_POST) && isset($_POST['update-button'])) {
     // SQL文作成（データ更新）
     $stmt = $pdo->prepare('UPDATE mst_employee SET
         sei = :sei, mei = :mei, sex = :sex, birthday = :birthday, startdate = :startdate, postcord = :postcord, address1 = :address1,
-        address2 = :address2, address3 = :address3 WHERE ID = :id');
+        address2 = :address2, address3 = :address3 WHERE id = :id');
 
     // 編集するデータをセット
     $stmt->bindValue(':sei', $_POST['sei'] ?? '', PDO::PARAM_STR);
