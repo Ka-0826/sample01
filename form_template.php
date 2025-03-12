@@ -23,9 +23,9 @@ require_once 'common.php';
                 <div class="contact-inner container mt-5">
                     <form class="w-50 mx-auto" action="<?php echo isset($formAction) ? $formAction : ''; ?>" method="POST">
 
-                    <!-- IDをhiddenで送信 -->
-                    <?php if (!empty($message_data['ID'])): ?>
-                        <input type="hidden" name="id" value="<?php echo h($message_data['ID']); ?>">
+                    <!-- idをhiddenで送信 -->
+                    <?php if (!empty($message_data['id'])): ?>
+                        <input type="hidden" name="id" value="<?php echo h($message_data['id']); ?>">
                     <?php endif; ?>
                     
                     <?php
@@ -33,6 +33,12 @@ require_once 'common.php';
                         $fields = [
                             'sei' => ['label' => '姓', 'type' => 'text', 'required' => true, 'maxlength' => 20],
                             'mei' => ['label' => '名', 'type' => 'text', 'required' => true, 'maxlength' => 20],
+                            'sex' => [
+                                'label' => '性別',
+                                'type' => 'radio',
+                                'required' => true,
+                                'options' => ['男性' => '男性', '女性' => '女性']
+                            ],
                             'birthday' => ['label' => '生年月日', 'type' => 'date', 'required' => true],
                             'startdate' => ['label' => '入社日', 'type' => 'date', 'required' => true],
                             'postcord' => [
@@ -56,7 +62,17 @@ require_once 'common.php';
                             <label for="<?php echo $name; ?>" class="form-label"><?php echo $field['label']; ?>
                                 <?php if ($field['required']) echo '<span class="essential">必須</span>'; ?>
                             </label>
-                            <?php if ($field['type'] === 'textarea'): ?>
+                            <?php if ($field['type'] === 'radio'): ?>
+                                <!-- ラジオボタン -->
+                                <div>
+                                    <?php foreach ($field['options'] as $value => $label): ?>
+                                        <input type="radio" id="<?php echo $value; ?>" name="<?php echo $name; ?>" value="<?php echo $value; ?>"
+                                            <?php echo isset($message_data[$name]) && $message_data[$name] == $value ? 'checked' : ''; ?>
+                                            <?php if ($field['required']) echo 'required'; ?>>
+                                        <label for="<?php echo $value; ?>"><?php echo $label; ?></label>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php elseif ($field['type'] === 'textarea'): ?>
                                 <!-- テキストエリア -->
                                 <textarea id="<?php echo $name; ?>" name="<?php echo $name; ?>" class="form-control"
                                     maxlength="<?php echo $field['maxlength'] ?? ''; ?>"><?php echo isset($message_data[$name]) ? h($message_data[$name]) : ''; ?></textarea>
