@@ -4,7 +4,7 @@
 社員の登録・編集・削除などの機能を提供します。  
 
 ## 使用技術    
-フロントエンド: HTML CSS (Bootstrap)  Javascript
+フロントエンド: HTML CSS (Bootstrap)  Javascript  
 バックエンド: PHP  
 開発環境: MAMP  
 エディタ: VSCode  
